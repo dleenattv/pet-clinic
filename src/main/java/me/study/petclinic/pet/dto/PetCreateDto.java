@@ -1,13 +1,18 @@
 package me.study.petclinic.pet.dto;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class PetCreateDto {
 
+    @NotNull
+    private Long ownerId;
+
     @NotEmpty
     private String name;
-    @NotEmpty
-    private char gender;
+
+    @NotNull
+    private Character gender;
 
     public String getName() {
         return name;
@@ -23,5 +28,13 @@ public class PetCreateDto {
 
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 }

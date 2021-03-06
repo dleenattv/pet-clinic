@@ -1,6 +1,7 @@
 package me.study.petclinic.owner.service;
 
 import me.study.petclinic.owner.dto.OwnerCreateDto;
+import me.study.petclinic.owner.dto.OwnerUpdateDto;
 import me.study.petclinic.owner.entity.Owner;
 import me.study.petclinic.owner.repository.OwnerRepository;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,12 @@
 package me.study.petclinic.pet.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import me.study.petclinic.owner.entity.Owner;
+import me.study.petclinic.visit.entity.Visit;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Pet {
@@ -11,13 +14,25 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
-    private char gender;
+
+    private Character gender;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    @JsonBackReference
+    private Owner owner;
+
+    // JAP 어노테이션, 1대 다 관계임을 알려줌. cascade : pet 이 삭제되면 등록된 예약도 삭제
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Visit> visits;
 
     public Pet() {
     }
 
-    public Pet(String name, char gender) {
+    public Pet(String name, Character gender) {
         this.name = name;
         this.gender = gender;
     }
@@ -44,5 +59,13 @@ public class Pet {
 
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

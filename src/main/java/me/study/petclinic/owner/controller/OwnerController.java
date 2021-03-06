@@ -1,6 +1,7 @@
 package me.study.petclinic.owner.controller;
 
 import me.study.petclinic.owner.dto.OwnerCreateDto;
+import me.study.petclinic.owner.dto.OwnerUpdateDto;
 import me.study.petclinic.owner.entity.Owner;
 import me.study.petclinic.owner.service.OwnerService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,9 @@ public class OwnerController {
     }
 
     // TODO : Update
+    public void updateOwnerBy(OwnerUpdateDto ownerUpdateDto) {
+
+    }
 
     // TODO : Delete
 
